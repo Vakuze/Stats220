@@ -1,0 +1,75 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+body {
+  background-color: #f0f8ff;  /* Light blue background */
+  font-family: Arial, sans-serif;  /* Set font to Arial */
+}
+
+h1, h2, h3 {
+  color: #2a2a2a;  /* Dark color for headings */
+}
+
+```
+
+## Understanding Student Study Patterns
+
+In this report, I have made a form to analyse the study habits of students. From analyzing the results given by students, I was able to uncover not just how often students study, but the amount, days and reason. With this information, I aim to reveal the patterns of students study routines. The report focuses on "How many days per week do students dedicate to studying?", "How many hours each week are spent learning?" and "What is their reason studying".
+
+## Summary of Study Habits
+```{r, echo=FALSE}
+library(tidyverse)
+
+#Load and clean data
+logged_data <- read.csv("C:/Users/ryans/OneDrive/ドキュメント/Stats220/Project2/Study Habits Survey (Responses) - Form responses 1.csv")
+latest_data <- logged_data %>%
+  rename(hours_per_week = "How.many.hours.this.week.did.you.spend.studying.",
+         amount_of_days = "How.often.do.you.study.in.a.typical.week.",
+         study_reason = "What.factors.influence.how.often.you.study."
+         
+  )
+
+
+#Summary values
+max_hours <- max(latest_data$hours_per_week)
+responses <- nrow(latest_data)
+
+
+ggplot(latest_data, aes(x = amount_of_days)) +
+  geom_bar(stats = "count", fill = "skyblue") +
+  labs(title = "How Often Students Study",
+       x = "Study Days per Week",
+       y = "Students")
+
+ggplot(latest_data, aes(x = hours_per_week)) +
+  geom_bar(stats = "count",  fill = "green") +
+  labs(title = "How many hours do you study per week",
+       x = "Hours per week", 
+       y = "Students")
+
+
+#I chose max_hours to showcase the highest number of hours studied by 
+#a participant and responses to represent the total survey responses. 
+#For visualization, I selected bar charts to illustrate study frequency 
+#(amount_of_days) and weekly study hours (hours_per_week).
+
+# Display dynamic comments
+dynamic_comment1 <- paste("The maximum number of hours a student spends studying per week is", max_hours, "hours.")
+dynamic_comment2 <- paste("A total of", responses, "responses were collected in the survey.")
+
+dynamic_comment1
+dynamic_comment2
+
+```
+
+The best pet to have is a  of course!
+
+![](https://c.tenor.com/-qBsG1HwR4oAAAAC/tenor.gif)
