@@ -29,7 +29,7 @@ In this report, I have made a form to analyse the study habits of students. From
 library(tidyverse)
 
 #Load and clean data
-logged_data <- read.csv("C:/Users/ryans/OneDrive/ドキュメント/Stats220/Project2/Study Habits Survey (Responses) - Form responses 1.csv")
+logged_data <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vRe9RIA6WdSN849VAz20tYFUnwlRIa_AHGxLZBZPB-7GICfbJ3O47gBicrVyPgtNpoVdbLu1IRwR1qZ/pub?output=csv")
 latest_data <- logged_data %>%
   rename(hours_per_week = "How.many.hours.this.week.did.you.spend.studying.",
          amount_of_days = "How.often.do.you.study.in.a.typical.week.",
